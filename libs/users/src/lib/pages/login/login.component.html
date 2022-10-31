@@ -1,0 +1,89 @@
+<div class="login-register">
+  <div class="login-register-panel">
+    <div class="grid">
+      <div class="col-6">
+        <img src="assets/images/login-photo.png" />
+      </div>
+      <div class="col-6 p-5">
+        <h3>Welcome!</h3>
+        <h2>Login Page</h2>
+        <form [formGroup]="loginFormGroup">
+          <div class="grid mt-6">
+            <div class="col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"
+                  ><i class="pi pi-user"></i
+                ></span>
+                <input
+                  type="text"
+                  formControlName="email"
+                  pInputText
+                  placeholder="Email"
+                />
+              </div>
+              <div
+                *ngIf="loginForm['email'].touched && loginForm['email'].invalid"
+                class="alert-validate mt-2"
+              >
+                <div
+                  *ngIf="
+                loginForm['email'].errors && loginForm['email'].errors['required']
+                "
+                  style="color: #c80000; text-align: center;"
+                >
+                  * Required
+                </div>
+                <div
+                  *ngIf="
+                loginForm['email'].errors && loginForm['email'].errors['email']
+                "
+                  style="color: #c80000; text-align: center;"
+                >
+                  * Email only
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"
+                  ><i class="pi pi-lock"></i
+                ></span>
+                <input
+                  type="password"
+                  formControlName="password"
+                  pInputText
+                  placeholder="Password"
+                />
+              </div>
+              <div
+                *ngIf="loginForm['password'].touched && loginForm['password'].invalid"
+                class="alert-validate mt-2"
+              >
+                <div
+                  *ngIf="
+                  loginForm['password'].errors && loginForm['password'].errors['required']
+                  "
+                  style="color: #c80000; text-align: center;"
+                >
+                  * Required
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <p-button
+                label="Submit"
+                styleClass="full-btn"
+                (onClick)="onSubmit()"
+              ></p-button>
+            </div>
+            <div class="col-12" *ngIf="isSubmitted && authError">
+              <small class="error" style="color: #c80000; text-align: center;"
+                >{{ authMessage }}</small
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

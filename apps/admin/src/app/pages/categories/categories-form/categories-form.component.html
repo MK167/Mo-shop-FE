@@ -1,0 +1,80 @@
+<p-toast position="top-right"></p-toast>
+
+<div class="admin-page">
+  <p-card
+    [header]="editmode ? 'Edit Category' : 'Add Category'"
+    subheader="You can add or edit categories here"
+  >
+    <div class="grid mb-5">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button
+              styleClass="p-button-primary mr-2"
+              [label]="editmode ? 'Update Category' : 'Create Category'"
+              icon="pi pi-plus"
+              (click)="onSubmit()"
+              [disabled]="form.invalid"
+            ></p-button>
+
+            <p-button
+              styleClass="p-button-secondary"
+              label="Cancel"
+              icon="pi pi-arrow-circle-left"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="col-12">
+        <form [formGroup]="form">
+          <div class="formgrid grid">
+            <div class="field col">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                required
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full mb-2"
+              />
+              <small
+                class="p-error"
+                *ngIf="f['name'].touched && f['name'].invalid"
+                ><strong>Name</strong> is Required</small
+              >
+            </div>
+            <div class="field col">
+              <label for="icon">Icon</label>
+              <input
+                id="icon"
+                type="text"
+                formControlName="icon"
+                required
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full mb-2"
+              />
+              <small
+                class="p-error"
+                *ngIf="f['icon'].touched && f['icon'].invalid"
+                ><strong>Icon</strong> is Required</small
+              >
+            </div>
+            <div class="field col">
+              <label for="color">Color</label>
+              <br />
+              <p-colorPicker formControlName="color"></p-colorPicker>
+              <small
+                class="p-error"
+                *ngIf="f['color'].touched && f['color'].invalid"
+                ><strong>Color</strong> is Required</small
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

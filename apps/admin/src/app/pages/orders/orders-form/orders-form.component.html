@@ -1,0 +1,114 @@
+<p-toast position="top-right"></p-toast>
+
+<div class="admin-page" *ngIf="order">
+  <p-card [header]="'Review Order'" subheader="You can edit order status here">
+    <p-fieldset legend="Order Details" [toggleable]="true" styleClass="mb-4">
+      <div class="grid">
+        <div class="col-4">
+          <h4><strong>Order ID</strong></h4>
+          <p>{{order.id}}</p>
+        </div>
+        <div class="col-4">
+          <h4><strong>Order Date</strong></h4>
+          <p>{{order.dateOrdered | date: 'medium'}}</p>
+        </div>
+        <div class="col-4">
+          <h4><strong>Order Status</strong></h4>
+          <p-dropdown
+          [options]="orderStatuses"
+          optionLabel="name"
+          optionValue="id"
+          (onChange)="onStatusChange($event)"
+          [(ngModel)]="selectedStatus"
+          >
+          </p-dropdown>
+        </div>
+        <div class="col-4">
+          <h4><strong>Total Price</strong></h4>
+          <p>{{order.totalPrice}} <small> EGP</small></p>
+        </div>
+      </div>
+    </p-fieldset>
+    <p-fieldset legend="Order Items" [toggleable]="true" styleClass="mb-4">
+      <div class="grid mb-5">
+        <div class="col-2 font-bold">
+          <h4 class="font-bold">Name</h4>
+        </div>
+        <div class="col-2 font-bold">
+          <h4 class="font-bold">Brand</h4>
+        </div>
+        <div class="col-2 font-bold">
+          <h4 class="font-bold">Category</h4>
+        </div>
+        <div class="col-2 font-bold">
+          <h4 class="font-bold">Price</h4>
+        </div>
+        <div class="col-2 font-bold">
+          <h4 class="font-bold">Quantity</h4>
+        </div>
+        <div class="col-2 font-bold">
+          <h4 class="font-bold">Subtotal</h4>
+        </div>
+      </div>
+
+      <div class="grid mb-5" *ngFor="let item of order.orderItems">
+        <div class="col-2">
+          {{item.product?.name}}
+        </div>
+        <div class="col-2">
+          {{item.product?.brand}}
+        </div>
+        <div class="col-2">
+          {{item.product?.category?.name}}
+        </div>
+        <div class="col-2">
+          {{item.product?.price}}
+        </div>
+        <div class="col-2">
+          {{item.quantity}}
+        </div>
+        <div class="col-2">
+          {{item?.product!.price * item.quantity}} <small>EGP</small>
+        </div>
+      </div>
+
+      <div class="grid" style="color: green;">
+        <div class="col-2 col-offset-8 font-bold">
+          Total price
+        </div>
+        <div class="col-2">
+          {{order.totalPrice}} EGP
+        </div>
+      </div>
+    </p-fieldset>
+    <p-fieldset legend="Order Address" [toggleable]="true" styleClass="mb-4">
+      <div class="grid">
+        <div class="col-4">
+          <h4 class="font-bold mb-3">
+            Order Address
+          </h4>
+          <p>
+            {{order.shippingAddress1}}<br />
+            {{order.shippingAddress2}}<br />
+            {{order.zip}}{{order.city}}<br />
+            {{order.country}}
+          </p>
+        </div>
+        <div class="col-4">
+          <h4 class="font-bold mb-3">
+            Customer Info
+          </h4>
+          <p>{{order.user.name}}<br /></p>
+        </div>
+        <div class="col-4">
+          <h4 class="font-bold mb-3">
+            Contact Info
+          </h4>
+          <p>
+            {{order.phone}}
+          </p>
+        </div>
+      </div>
+    </p-fieldset>
+  </p-card>
+</div>
