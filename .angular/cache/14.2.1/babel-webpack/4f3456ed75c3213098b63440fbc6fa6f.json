@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './lib/products';\nexport * from './lib/models/category';\nexport * from './lib/models/product';\nexport * from './lib/services/categories.service';\nexport * from './lib/services/products.service';\nexport * from './lib/products.module';\nexport * from './lib/products-routing.module';","map":null,"metadata":{},"sourceType":"module"}
