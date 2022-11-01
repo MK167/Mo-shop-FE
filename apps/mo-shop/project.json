@@ -76,7 +76,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/mo-shop"],
+      "outputs": ["{workspaceRoot}/coverage/apps/mo-shop"],
       "options": {
         "jestConfig": "apps/mo-shop/jest.config.ts",
         "passWithNoTests": true
