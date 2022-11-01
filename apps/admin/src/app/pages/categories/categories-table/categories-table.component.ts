@@ -28,7 +28,7 @@ export class CategoriesTableComponent implements OnInit, OnDestroy {
   }
   getCategory() {
     this.CategoriesService.getCategories().pipe(takeUntil(this.endsubs$)).subscribe((data) => {
-      var count = 0;
+      let count = 0;
       data.forEach(element => {
         count += 1;
         element.autoID = count;
@@ -54,9 +54,7 @@ export class CategoriesTableComponent implements OnInit, OnDestroy {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Category not Deleted!' });
           })
       },
-      reject: (type: any) => {
 
-      }
     });
   }
 

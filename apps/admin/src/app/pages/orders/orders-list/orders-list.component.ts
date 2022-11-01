@@ -54,7 +54,7 @@ export class OrdersListComponent implements OnInit, OnDestroy {
 
   getOrders() {
     this.orderService.getOrders().pipe(takeUntil(this.endsubs$)).subscribe((data) => {
-      var count = 0;
+      let count = 0;
       data.forEach(element => {
         count += 1;
         element.autoID = count;
@@ -80,9 +80,6 @@ export class OrdersListComponent implements OnInit, OnDestroy {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Order not Deleted!' });
           })
       },
-      reject: (type: any) => {
-
-      }
     });
   }
   showOrder(id: string) {

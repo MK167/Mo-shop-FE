@@ -3,7 +3,7 @@ import { CartService } from '@mo-shop/orders';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'mo-shop-messages-messages',
+  selector: 'moshop-messages-messages',
   templateUrl: './messages.component.html',
   styles: [
   ]

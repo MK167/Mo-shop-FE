@@ -30,7 +30,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   getUser() {
     this.userService.getUsers().pipe(takeUntil(this.endsubs$)).subscribe((data) => {
-      var count = 0;
+      let count = 0;
       data.forEach(element => {
         count += 1;
         element.autoID = count;
@@ -56,9 +56,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'User not Deleted!' });
           })
       },
-      reject: (type: any) => {
-
-      }
     });
   }
 

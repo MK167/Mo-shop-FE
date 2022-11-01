@@ -21,13 +21,30 @@
         ],
         "no-empty-function": "off",
         "@typescript-eslint/no-empty-function": "off",
-        "@angular-eslint/no-empty-lifecycle-method":"off"
+        "@angular-eslint/no-empty-lifecycle-method": "off"
       }
     },
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "moshop",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "moshop",
+            "style": "kebab-case"
+          }
+        ]
+      }
     },
     {
       "files": ["*.js", "*.jsx"],

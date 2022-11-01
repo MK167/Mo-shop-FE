@@ -8,12 +8,12 @@ import { MessageService } from 'primeng/api';
 import { Subject, takeUntil, timer } from 'rxjs';
 
 @Component({
-  selector: 'mo-shop-categories-form',
+  selector: 'admin-categories-form',
   templateUrl: './categories-form.component.html'
 })
 export class CategoriesFormComponent implements OnInit, OnDestroy {
   form!: FormGroup;
-  isSubmitted: boolean = false;
+  isSubmitted = false;
   editmode = false;
   categoryID: any;
   endsubs$: Subject<any> = new Subject();
@@ -65,7 +65,7 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    let newData: Category = {
+    const newData: Category = {
       id: this.categoryID,
       name: this.form.controls['name'].value,
       icon: this.form.controls['icon'].value,

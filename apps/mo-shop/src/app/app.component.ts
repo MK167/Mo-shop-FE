@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@mo-shop/users';
 
 @Component({
-  selector: 'mo-shop-root',
+  selector: 'moshop-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {

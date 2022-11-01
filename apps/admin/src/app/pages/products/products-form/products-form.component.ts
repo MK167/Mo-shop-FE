@@ -15,7 +15,7 @@ import { Subject, takeUntil, timer } from 'rxjs';
 export class ProductsFormComponent implements OnInit, OnDestroy {
   editmode = false;
   form!: FormGroup | any;
-  isSubmitted: boolean = false;
+  isSubmitted = false;
   product: Product[] = [];
   categories: Category[] = [];
   imageDisplay!: string | ArrayBuffer | null | undefined;
