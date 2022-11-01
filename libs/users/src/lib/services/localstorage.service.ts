@@ -28,8 +28,7 @@ export class LocalstorageService {
     if (token) {
       const tokenDecode = JSON.parse(atob(token.split('.')[1]));
       return !this._tokenExpired(tokenDecode.exp);
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -39,16 +38,16 @@ export class LocalstorageService {
     if (token) {
       const tokenDecode = JSON.parse(atob(token.split('.')[1]));
       if (tokenDecode) {
+        console.log(tokenDecode.userId)
         return tokenDecode.userId;
-      }
-      else {
+      } else {
         return null;
       }
-    }
-    else {
+    } else {
       return null;
     }
   }
+
   private _tokenExpired(expiration: any): boolean {
     return Math.floor(new Date().getTime() / 1000) >= expiration;
   }

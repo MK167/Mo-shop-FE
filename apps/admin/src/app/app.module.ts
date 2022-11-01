@@ -40,6 +40,8 @@ import { OrdersFormComponent } from './pages/orders/orders-form/orders-form.comp
 import { FieldsetModule } from 'primeng/fieldset';
 import { JwtInterceptor, UsersModule } from '@mo-shop/users';
 import { AppRoutingModule } from './app-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 const UX_Module = [
   CardModule,
@@ -85,7 +87,10 @@ const UX_Module = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    UsersModule
+    UsersModule,
+    // Define NGRX
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([])
   ],
   providers: [CategoriesService, MessageService, ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

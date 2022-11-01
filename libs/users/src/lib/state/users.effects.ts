@@ -12,13 +12,16 @@ import { UsersService } from '../services/users.service';
 export class UsersEffects {
 // Step 5
 
-  buildUserSession$ = createEffect(() => this.actions$.pipe(
-    ofType(UsersActions.bulidUsersSession), concatMap(() => {
+  buildUserSession$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(UsersActions.bulidUsersSession),
+    concatMap(() => {
       if (this.localstorageService.isValidToken()) {
         const userId = this.localstorageService.getUserIdFromToken();
         if (userId) {
           return this.usersService.getUsersByID(userId).pipe(
             map((user) => {
+              console.log('usr in map', user)
               return UsersActions.bulidUsersSuccess({ user: user })
             }),
             catchError(() => of(UsersActions.bulidUsersFailure()))

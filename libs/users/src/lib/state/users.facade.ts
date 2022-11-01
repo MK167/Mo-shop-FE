@@ -7,13 +7,13 @@ import * as UsersSelectors from './users.selectors';
 @Injectable()
 export class UsersFacade {
   // Step 2
-
-  currentUser$: any  = this.store.pipe(select(UsersSelectors.getUser));
+  currentUser$ = this.store.pipe(select(UsersSelectors.getUser));
   isAuthenticated$ = this.store.pipe(select(UsersSelectors.getUserIsAuth));
-
-  constructor(private readonly store: Store) { }
+  constructor(private readonly store: Store) {
+   }
 
   bulidUserSession() {
     this.store.dispatch(UsersActions.bulidUsersSession());
   }
+
 }
