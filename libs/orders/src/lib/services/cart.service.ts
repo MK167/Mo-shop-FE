@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cart, CartItem } from '../models/cart';
 import { BehaviorSubject, map, Subject } from 'rxjs';
@@ -75,7 +74,6 @@ export class CartService {
     this.cart$.next(cart);
   }
 
-
   emptyCart() {
     const intialCart = {
       items: []
@@ -84,5 +82,6 @@ export class CartService {
     localStorage.setItem(CART_KEY, intialCartJson);
     this.cart$.next(intialCart);
   }
+
 
 }

@@ -7,8 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { UiModule } from '@mo-shop/ui';
-import {AccordionModule} from 'primeng/accordion';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AccordionModule } from 'primeng/accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { ProductsModule } from '@mo-shop/products';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,6 +19,7 @@ import { MessageService } from 'primeng/api';
 import { JwtInterceptor, UsersModule } from '@mo-shop/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 // Declare Routes
@@ -27,10 +28,10 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
   },
-//   {
-//     path: 'products',
-//     component: ProductListComponent,
-//   },
+  //   {
+  //     path: 'products',
+  //     component: ProductListComponent,
+  //   },
 ];
 
 @NgModule({
@@ -55,7 +56,9 @@ const routes: Routes = [
     UsersModule,
     // Define NGRX
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    NgxStripeModule.forRoot('pk_test_51Lz9woGJBdhM8ylvwTKvBNHvlW9zXalbzIam03LXJYyodfosDy90fhEfaYUYsfx9gqRbftgPlMhNzZpgUSfmxnEW001dsjKLal'),
+
   ],
   providers: [MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
@@ -64,4 +67,4 @@ const routes: Routes = [
     MessagesComponent
   ],
 })
-export class AppModule {}
+export class AppModule { }

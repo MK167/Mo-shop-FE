@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '@mo-shop/users';
 import { Cart } from '../../models/cart';
-import { OrderItem, Orders } from '../../models/orders';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
-import { take, Subject, takeUntil } from 'rxjs';
-import { Users } from '../../../../../users/src/lib/models/user';
+import { Subject, takeUntil } from 'rxjs';
+import { StripeService } from 'ngx-stripe';
+import { Orders } from '../../models/orders';
 
 @Component({
   selector: 'orders-checkout-page',
@@ -19,7 +19,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private formBuilder: FormBuilder,
     private cartService: CartService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private stripeService: StripeService,
   ) { }
 
 
@@ -66,7 +67,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   private autoFillUserData() {
     this.usersService.observeCurrentUser().pipe(takeUntil(this.unsubscribe$)).subscribe((user) => {
-      if(user) {
+      if (user) {
         this.userId = user.id;
         this.checkoutFormGroup.controls['name'].setValue(user.name);
         this.checkoutFormGroup.controls['email'].setValue(user.email);
@@ -93,7 +94,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     if (this.checkoutFormGroup.invalid) {
       return;
     }
-
     const order: Orders = {
       orderItems: this.orderItems,
       shippingAddress1: this.checkoutFormGroup.controls['street'].value,
@@ -106,17 +106,13 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       user: this.userId,
       dateOrdered: `${Date.now()}`
     };
+    this.ordersService.cacheOrderData(order);
 
-    this.ordersService.createOrders(order).subscribe(
-      () => {
-        //redirect to thank you page // payment
-        this.cartService.emptyCart();
-        this.router.navigate(['/success']);
-      },
-      () => {
-        //display some message to user
+    this.ordersService.createCheckoutSession(this.orderItems).subscribe((error) => {
+      if (error) {
+        console.log('error', error);
       }
-    );
+    })
   }
 
   get checkoutForm() {

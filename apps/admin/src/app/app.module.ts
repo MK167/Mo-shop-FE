@@ -42,6 +42,7 @@ import { JwtInterceptor, UsersModule } from '@mo-shop/users';
 import { AppRoutingModule } from './app-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { NgxStripeModule } from 'ngx-stripe';
 
 const UX_Module = [
   CardModule,
@@ -90,7 +91,8 @@ const UX_Module = [
     UsersModule,
     // Define NGRX
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    NgxStripeModule.forRoot('pk_test_51Lz9woGJBdhM8ylvwTKvBNHvlW9zXalbzIam03LXJYyodfosDy90fhEfaYUYsfx9gqRbftgPlMhNzZpgUSfmxnEW001dsjKLal'),
   ],
   providers: [CategoriesService, MessageService, ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

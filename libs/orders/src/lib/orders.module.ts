@@ -82,7 +82,7 @@ const routes: Routes = [
     FormsModule,
     ToastModule,
     ConfirmDialogModule,
-    ...UX_Module
+    ...UX_Module,
   ],
   declarations: [
     CartIconComponent,
