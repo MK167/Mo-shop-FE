@@ -16,6 +16,9 @@ import { OrdersModule } from '@mo-shop/orders';
 import { MessagesComponent } from './shared/messages/messages.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { UsersModule } from '@mo-shop/users';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 // Declare Routes
@@ -49,7 +52,10 @@ const routes: Routes = [
     ProductsModule,
     OrdersModule,
     ToastModule,
-
+    UsersModule,
+    // Define NGRX
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([])
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

@@ -4,6 +4,7 @@ import { environment } from '@env/environnment';
 import { map, Observable, shareReplay } from 'rxjs';
 import { Users } from '../models/user';
 import * as countriesLib from 'i18n-iso-countries';
+import { UsersFacade } from '../state/users.facade';
 declare const require: (arg0: string) => countriesLib.LocaleData;
 
 @Injectable({
@@ -14,10 +15,12 @@ export class UsersService {
   BaseUrl = environment.apiUrl;
   Users = 'users';
 
-  constructor(private Http: HttpClient) {
+  constructor(private Http: HttpClient,
+    // Step 3
+    private usersFacade: UsersFacade) {
     countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
 
-   }
+  }
 
   getUsers(): Observable<Users[]> {
     return this.Http.get<Users[]>(this.BaseUrl + this.Users).pipe(
@@ -64,6 +67,19 @@ export class UsersService {
       .pipe(map((objectValue: any) => objectValue.userCount));
   }
 
+
+  // Step 3
+  initAppSession() {
+    this.usersFacade.bulidUserSession();
+  }
+
+  observeCurrentUser() {
+    return this.usersFacade.currentUser$;
+  }
+
+  isCurrentUserAuthenticated() {
+    return this.usersFacade.isAuthenticated$;
+  }
 }
 
 

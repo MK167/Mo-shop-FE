@@ -29,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
+import { AuthGuard } from '@mo-shop/users';
 
 const UX_Module = [
   CardModule,
@@ -57,6 +58,7 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
+    canActivate:[AuthGuard],
     component: CheckoutPageComponent
   },
   {

@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/*": ["environments/*"],
       "@mo-shop/orders": ["libs/orders/src/index.ts"],
       "@mo-shop/products": ["libs/products/src/index.ts"],
       "@mo-shop/ui": ["libs/ui/src/index.ts"],
-      "@mo-shop/users": ["libs/users/src/index.ts"],
-      "@env/*": ["environments/*"]
+      "@mo-shop/users": ["libs/users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
